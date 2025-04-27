@@ -1,0 +1,57 @@
+<div class="quiz-modern-container">
+  <div class="quiz-modern-header">
+    <div class="quiz-modern-points" (click)="goToStore()">
+      <span class="points-icon">💎</span> {{ diamondCount }}
+    </div>
+    <div class="quiz-modern-title">Configure your Quiz</div>
+    <div style="width: 32px"></div>
+  </div>
+
+  <div class="quiz-modern-settings">
+    <div class="setting-option">
+      <span class="setting-label">Category</span>
+      <select [(ngModel)]="selectedCategory" class="modern-select">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="setting-option">
+      <span class="setting-label">Difficulty</span>
+      <div class="button-group">
+        <button 
+          *ngFor="let diff of difficulties" 
+          (click)="setDifficulty(diff.value)"
+          [class.selected]="selectedDifficulty === diff.value"
+          class="difficulty-button">
+          {{ diff.label }}
+        </button>
+      </div>
+    </div>
+
+    <div class="setting-option">
+      <span class="setting-label">Question Type</span>
+      <div class="button-group">
+        <button 
+          *ngFor="let type of questionTypes" 
+          (click)="setType(type.value)"
+          [class.selected]="selectedType === type.value"
+          class="type-button">
+          {{ type.label }}
+        </button>
+      </div>
+    </div>
+
+    <div class="setting-option">
+      <label class="modern-checkbox">
+        <input type="checkbox" [(ngModel)]="timed">
+        <span class="checkbox-text">Timed mode (15s per question)</span>
+      </label>
+    </div>
+  </div>
+
+  <button (click)="startQuiz()" class="quiz-modern-continue">
+    START QUIZ
+  </button>
+</div> 
