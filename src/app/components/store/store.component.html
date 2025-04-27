@@ -1,0 +1,34 @@
+<div class="store-container">
+  <div class="store-header">
+    <h2>Tienda de Avatares</h2>
+    <div class="diamonds-display">
+      <span class="diamond-icon">💎</span>
+      <span>{{diamonds}}</span>
+    </div>
+    <button class="close-button" (click)="goBack()">✕</button>
+  </div>
+
+  <div class="avatars-grid">
+    <div *ngFor="let avatar of avatars" 
+         class="avatar-card" 
+         [class.selected]="selectedAvatar.id === avatar.id"
+         [class.locked]="!avatar.unlocked">
+      <img [src]="avatar.image" [alt]="avatar.name" class="avatar-image">
+      <h3>{{avatar.name}}</h3>
+      <div class="avatar-actions">
+        <button *ngIf="!avatar.unlocked" 
+                (click)="purchaseAvatar(avatar)"
+                [disabled]="diamonds < avatar.price"
+                class="purchase-button">
+          <span>💎 {{avatar.price}}</span>
+        </button>
+        <button *ngIf="avatar.unlocked" 
+                (click)="selectAvatar(avatar)"
+                [class.active]="selectedAvatar.id === avatar.id"
+                class="select-button">
+          {{selectedAvatar.id === avatar.id ? 'Seleccionado' : 'Seleccionar'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
