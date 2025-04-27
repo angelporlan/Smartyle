@@ -4,7 +4,7 @@
       <span class="diamond-icon">💎</span>
       <span>{{diamonds}}</span>
     </div>
-    <h2>Tienda de Avatares</h2>
+    <h2>Avatar Store</h2>
     <button class="close-button" (click)="goBack()">✕</button>
   </div>
 
@@ -26,7 +26,7 @@
                 (click)="selectAvatar(avatar)"
                 [class.active]="selectedAvatar.id === avatar.id"
                 class="select-button">
-          {{selectedAvatar.id === avatar.id ? 'Seleccionado' : 'Seleccionar'}}
+          {{selectedAvatar.id === avatar.id ? 'Selected' : 'Select'}}
         </button>
       </div>
     </div>
