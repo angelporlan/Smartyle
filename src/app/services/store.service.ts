@@ -19,56 +19,56 @@ export class StoreService {
     {
       id: 1,
       name: 'Default Avatar',
-      image: '👤',
+      image: 'assets/avatars/default.png',
       price: 0,
       unlocked: true
     },
     {
       id: 2,
-      name: 'Cool Cat',
-      image: '😺',
+      name: 'Cat',
+      image: 'assets/avatars/cat.webp',
       price: 10,
       unlocked: false
     },
     {
       id: 3,
-      name: 'Happy Dog',
-      image: '🐶',
+      name: 'Dog',
+      image: 'assets/avatars/dog.webp',
       price: 15,
       unlocked: false
     },
     {
       id: 4,
-      name: 'Wizard',
-      image: '🧙‍♂️',
+      name: 'Horse',
+      image: 'assets/avatars/horse.webp',
       price: 20,
       unlocked: false
     },
     {
       id: 5,
-      name: 'Alien',
-      image: '👽',
+      name: 'Astronaut',
+      image: 'assets/avatars/astronaut.webp',
       price: 25,
       unlocked: false
     },
     {
       id: 6,
       name: 'Crown',
-      image: '👑',
+      image: 'assets/avatars/cown.webp',
       price: 30,
       unlocked: false
     },
     {
       id: 7,
       name: 'Dragon',
-      image: '🐲',
+      image: 'assets/avatars/dragon.webp',
       price: 50,
       unlocked: false
     },
     {
       id: 8,
       name: 'Unicorn',
-      image: '🦄',
+      image: 'assets/avatars/unicorn.webp',
       price: 75,
       unlocked: false
     }
