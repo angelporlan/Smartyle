@@ -19,7 +19,7 @@ export class StoreService {
     {
       id: 1,
       name: 'Default Avatar',
-      image: 'assets/avatars/default.png',
+      image: 'assets/avatars/default.webp',
       price: 0,
       unlocked: true
     },
