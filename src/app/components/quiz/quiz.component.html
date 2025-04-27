@@ -1,0 +1,89 @@
+<div class="quiz-modern-container" *ngIf="!quizCompleted">
+  <div class="quiz-modern-header">
+    <div class="quiz-modern-points">
+      <span class="points-icon">💎</span> {{ diamondCount }}
+    </div>
+    <div class="quiz-modern-title">{{ currentQuestion.category }}</div>
+    <button class="quiz-modern-close" (click)="restartQuiz.emit()">✕</button>
+  </div>
+
+  <div class="quiz-modern-progress">
+    <div class="quiz-modern-progress-bar" [style.width.%]="((currentQuestionIndex+1)/questions.length)*100"></div>
+  </div>
+  <div class="quiz-modern-progress-text">{{currentQuestionIndex+1}}/{{questions.length}}</div>
+
+  <div *ngIf="settings.timed" class="quiz-modern-timer-progress">
+    <div class="quiz-modern-timer-bar" [style.width.%]="getTimePercentage()"></div>
+    <span class="quiz-modern-timer-text">{{ timeLeft }}s</span>
+  </div>
+
+  <div class="quiz-modern-question">
+    <span>{{ currentQuestion.question }}</span>
+  </div>
+
+  <div class="quiz-modern-options">
+    <button *ngFor="let answer of shuffledAnswers; let i = index"
+      (click)="selectAnswer(answer)"
+      [class.selected]="selectedAnswer === answer"
+      class="quiz-modern-option">
+      <span class="option-letter">{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i] }}</span>
+      <span class="option-main">{{ answer.split('|')[0] }}</span>
+      <span class="option-secondary" [ngClass]="{'positive': answer.includes('+'), 'negative': answer.includes('-')}" *ngIf="answer.split('|')[1]">
+        {{ answer.split('|')[1] }}
+      </span>
+    </button>
+  </div>
+
+  <button 
+    (click)="submitAnswer()"
+    [disabled]="!selectedAnswer"
+    class="quiz-modern-continue">
+    CONTINUE
+  </button>
+</div>
+
+<div class="quiz-modern-container" *ngIf="quizCompleted">
+  <div class="quiz-modern-header">
+    <div class="quiz-modern-points">
+      <span class="points-icon">💎</span> {{ diamondCount }}
+    </div>
+    <div class="quiz-modern-title">Results</div>
+    <div style="width: 32px"></div>
+  </div>
+
+  <div class="quiz-modern-results">
+    <div class="score-card">
+      <div class="score-title">Your Score</div>
+      <div class="score-value">{{ score }}/{{ questions.length }}</div>
+      <div class="diamonds-earned">+{{ score }} 💎</div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-title">Answer Review</div>
+      <div class="review-list">
+        <div class="review-item" *ngFor="let question of questions; let i = index">
+          <div class="question-result" [class.correct]="isAnswerCorrect(i)" [class.incorrect]="!isAnswerCorrect(i)">
+            <div class="question-number">Question {{ i + 1 }}</div>
+            <div class="question-text">{{ question.question }}</div>
+            <div class="answer-group">
+              <div class="user-answer">
+                <span class="answer-label">Your answer:</span>
+                <span [class.correct-text]="isAnswerCorrect(i)" [class.incorrect-text]="!isAnswerCorrect(i)">
+                  {{ userAnswers[i] || 'Not answered' }}
+                </span>
+              </div>
+              <div class="correct-answer" *ngIf="!isAnswerCorrect(i)">
+                <span class="answer-label">Correct answer:</span>
+                <span class="correct-text">{{ question.correct_answer }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="restartQuiz.emit()" class="quiz-modern-continue">
+    NEW QUIZ
+  </button>
+</div> 
