@@ -1,0 +1,12 @@
+<div class="difficulty-container">
+  <h2>Selecciona la dificultad</h2>
+  <div class="difficulty-buttons">
+    <button 
+      *ngFor="let diff of difficulties" 
+      (click)="selectDifficulty(diff.value)"
+      class="difficulty-button"
+      [class]="'difficulty-' + diff.value">
+      {{ diff.label }}
+    </button>
+  </div>
+</div> 
