@@ -1,0 +1,5 @@
+<app-quiz-settings *ngIf="!showQuiz" (settingsSelected)="onSettingsSelected($event)"></app-quiz-settings>
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+<app-quiz *ngIf="showQuiz" [questions]="questions" [settings]="settings" (restartQuiz)="showQuiz = false"></app-quiz>
