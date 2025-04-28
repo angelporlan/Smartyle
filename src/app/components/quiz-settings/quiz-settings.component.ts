@@ -3,6 +3,7 @@ import { QuestService, Category, Difficulty, QuestionType, QuizSettings } from '
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StoreService, Avatar } from '../../services/store.service';
 
 @Component({
   selector: 'app-quiz-settings',
@@ -34,15 +35,19 @@ export class QuizSettingsComponent implements OnInit {
     { value: 'boolean' as QuestionType, label: 'True/False' }
   ];
 
+  selectedAvatar: Avatar | null = null;
+
   constructor(
     private questService: QuestService,
-    private router: Router
+    private router: Router,
+    private storeService: StoreService
   ) {}
 
   async ngOnInit() {
     const response = await this.questService.getCategories();
     this.categories = response.trivia_categories;
     this.loadDiamonds();
+    this.selectedAvatar = this.storeService.getSelectedAvatar();
   }
 
   loadDiamonds() {

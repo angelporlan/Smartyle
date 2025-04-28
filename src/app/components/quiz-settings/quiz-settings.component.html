@@ -1,6 +1,7 @@
 <div class="quiz-modern-container">
   <div class="quiz-modern-header">
-    <div class="quiz-modern-points" (click)="goToStore()">
+    <div class="quiz-modern-points">
+      <img *ngIf="selectedAvatar" [src]="selectedAvatar.image" [alt]="selectedAvatar.name" class="user-avatar-header" (click)="goToStore()" style="cursor:pointer;" />
       <span class="points-icon">💎</span> {{ diamondCount }}
     </div>
     <div class="quiz-modern-title">Configure your Quiz</div>
